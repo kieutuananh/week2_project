@@ -29,14 +29,18 @@ def create_categories_table():
         print('ERROR BY CREATE TABLE', err)
 create_categories_table()
 
-#def select_all():
+def select_all():
     """SELECT all from table categories and give it in a list"""
     return cur.execute('SELECT * FROM categories;').fetchall()
 
-#def delete_all():
+def delete_all():
     """DELETE all from table catergores and give an []"""
 
     return cur.execute('DELETE FROM categories;')
+
+select_all()
+
+delete_all()
 
 class Category:
     def __init__(self, cat_id, name, url, parent_id):
@@ -85,6 +89,7 @@ def get_main_categories(save_db=False):
         result.append(cat)
     return result
 
+get_main_categories(save_db=True)
 
 def get_sub_categories(category, save_db=False):
     name = category.name
@@ -190,9 +195,21 @@ def create_products_table():
         cur.execute(query)
     except Exception as err:
         print('ERROR BY CREATE TABLE', err)
+
 create_products_table()
 
+def select_all_products():
+    """SELECT all from table products and give it in a list"""
+    return cur.execute('SELECT * FROM products;').fetchall()
 
+def delete_all_products():
+    """DELETE all from table catergores and give an []"""
+
+    return cur.execute('DELETE FROM products;')
+
+select_all_products()
+
+delete_all_products()
 
 def add_to_products():
     """ Add products infors in data to table products in database"""
@@ -213,3 +230,5 @@ def add_to_products():
       cur.execute(query, val)
     except Exception as err:
       print('ERROR BY INSERT:', err)
+
+add_to_products()
